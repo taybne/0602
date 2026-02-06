@@ -7,7 +7,7 @@ import json
 import os
 
 # ИЗМЕНИЛ template_folder НА ТВОЮ ПАПКУ
-app = Flask(__name__, template_folder='miniapp/templates', static_folder='miniapp/static')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = 'your-secret-key-change-it'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tag.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -82,11 +82,12 @@ def get_locations(city_slug):
 
 @app.route("/")
 def index():
-   return render_template("templates/index.html")
+  return render_template("index.html")
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
+
 
 
